@@ -23,6 +23,7 @@ import DetroitBoot from './components/DetroitBoot'
 import DetroitHud from './components/DetroitHud'
 import DetroitZen from './components/DetroitZen'
 import BerserkAsh from './components/BerserkAsh'
+import HerbarioLeaves from './components/HerbarioLeaves'
 import ThemeMasthead from './components/ThemeMasthead'
 import HorizonteBackdrop from './components/HorizonteBackdrop'
 import Firmament from './components/Firmament'
@@ -83,6 +84,7 @@ export default function App() {
         </div>
       )}
       {theme === 'berserk' && <BerserkAsh />}
+      {theme === 'herbario' && <HerbarioLeaves />}
       {theme === 'horizonte' && <HorizonteBackdrop />}
 
       {/* Main content */}
