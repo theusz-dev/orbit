@@ -92,24 +92,6 @@ export const themes = {
     '--berserk-steel': '#6f7378',
     '--berserk-bone': '#e9e0d0',
   },
-  'pop': {
-    name: 'Brutalismo Pop',
-    '--bg': '#fef6e4',
-    '--card': '#ffffff',
-    '--text': '#111111',
-    '--accent': '#ff3d71',
-    '--muted': '#5f574a',
-    '--border': '#111111',
-    '--font': "'Space Grotesk', 'Inter', system-ui, sans-serif",
-    '--star': '0',
-    // Cores dos adesivos.
-    '--pop-yellow': '#ffd23f',
-    '--pop-pink': '#ff5c8a',
-    '--pop-blue': '#4cc9f0',
-    '--pop-green': '#80ed99',
-    '--pop-orange': '#ff9f1c',
-    '--pop-lilac': '#b388ff',
-  },
   'sumie': {
     name: 'Sumi-e',
     '--bg': '#efe7d6',
@@ -123,21 +105,6 @@ export const themes = {
     // Tinta sumi (mesmo preto do texto, usado em traços) e papel washi claro.
     '--sumie-ink': '#1b1a17',
     '--sumie-paper': '#f8f2e4',
-  },
-  'lofi': {
-    name: 'Lo-fi · Quarto',
-    '--bg': '#150f22',
-    '--card': 'rgba(34, 22, 52, 0.85)',
-    '--text': '#f3e6d4',
-    '--accent': '#ffb454',
-    '--muted': '#a898b8',
-    '--border': 'rgba(255, 180, 84, 0.2)',
-    '--font': "'Inter', system-ui, sans-serif",
-    '--star': '0',
-    // Cores dos rótulos dos discos e do bokeh da cidade.
-    '--lofi-lilac': '#b79cff',
-    '--lofi-rose': '#ff8fab',
-    '--lofi-teal': '#6fd6c8',
   },
   'herbario': {
     name: 'Herbário · Naturalista',
@@ -154,6 +121,22 @@ export const themes = {
     '--herbario-wax': '#9e332e',
     '--herbario-paper': '#faf6ed',
   },
+  'horizonte': {
+    name: 'Horizonte · Dunas',
+    '--bg': '#000000',
+    '--card': 'rgba(10, 10, 10, 0.82)',
+    '--text': '#fafafa',
+    '--accent': '#ffffff',
+    '--muted': '#8f8f8f',
+    '--border': 'rgba(250, 250, 250, 0.14)',
+    '--font': "'Cormorant Garamond', Georgia, serif",
+    '--star': '0',
+    // Cores lidas pelos canvases via cssRgb() + luz lunar da moldura.
+    '--particle-rgb': '245 245 245',
+    '--particle-star-rgb': '240 240 240',
+    '--bg-rgb': '0 0 0',
+    '--light-rgb': '255 255 255',
+  },
 }
 
 // Layout de cards que "nasceu" com cada tema — Configurações oferece aplicá-lo
@@ -161,15 +144,13 @@ export const themes = {
 export const themeLayouts = {
   'minimal-light': 'classic',
   'premium-dark': 'classic',
-  'space': 'space',
   'cyberpunk': 'cyber',
   'nous-archive': 'archive',
   'detroit': 'android',
   'berserk': 'berserk',
-  'pop': 'adesivo',
   'sumie': 'tanzaku',
-  'lofi': 'vinil',
   'herbario': 'exsicata',
+  'horizonte': 'dunas',
 }
 
 export function resolveTheme(themeName) {

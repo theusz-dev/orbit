@@ -25,11 +25,9 @@ const GRID_CLASSES = {
   archive: 'grid grid-cols-[repeat(auto-fill,minmax(96px,1fr))] gap-2 sm:gap-2.5 py-4',
   android: 'grid grid-cols-[repeat(auto-fill,minmax(104px,1fr))] gap-3 sm:gap-3.5 py-4',
   berserk: 'grid grid-cols-[repeat(auto-fill,minmax(108px,1fr))] gap-3 sm:gap-4 py-4',
-  adesivo: 'grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-4 sm:gap-5 py-4',
   tanzaku: 'grid grid-cols-[repeat(auto-fill,minmax(76px,88px))] justify-start items-start gap-x-4 gap-y-8 py-4',
-  vinil: 'grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-x-4 gap-y-8 justify-items-center py-4',
   exsicata: 'grid grid-cols-[repeat(auto-fill,minmax(106px,1fr))] gap-4 sm:gap-5 py-4',
-  space: SPACED_GRID_CLASS,
+  dunas: 'grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(104px,1fr))] gap-x-4 gap-y-6 sm:gap-x-5 sm:gap-y-7 justify-items-center py-4',
   'quantum-spin': SPACED_GRID_CLASS,
   cyber: SPACED_GRID_CLASS,
   'wave-particle': 'grid grid-cols-[repeat(auto-fill,minmax(95px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(115px,1fr))] gap-x-4 gap-y-8 sm:gap-x-6 sm:gap-y-10 justify-items-center py-4',
@@ -41,9 +39,9 @@ const KBD_CLASSES = {
   archive: 'top-1/2 right-1.5 -translate-y-1/2',
   android: 'top-[42%] right-1.5 -translate-y-1/2',
   berserk: 'top-[42%] right-1.5 -translate-y-1/2',
-  adesivo: 'top-2 left-2',
   tanzaku: 'top-1 left-1',
   exsicata: 'top-2 left-2',
+  dunas: 'top-0 left-1/2 -translate-x-[calc(50%+36px)] sm:-translate-x-[calc(50%+40px)]',
 }
 
 // Constante de módulo em vez de `[]` inline: um array novo a cada render faria

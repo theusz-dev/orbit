@@ -24,7 +24,8 @@ import DetroitHud from './components/DetroitHud'
 import DetroitZen from './components/DetroitZen'
 import BerserkAsh from './components/BerserkAsh'
 import ThemeMasthead from './components/ThemeMasthead'
-import LofiRain from './components/LofiRain'
+import HorizonteBackdrop from './components/HorizonteBackdrop'
+import Firmament from './components/Firmament'
 import BackupReminder from './components/BackupReminder'
 
 const SettingsModal = lazy(() => import('./components/SettingsModal'))
@@ -82,7 +83,7 @@ export default function App() {
         </div>
       )}
       {theme === 'berserk' && <BerserkAsh />}
-      {theme === 'lofi' && <LofiRain />}
+      {theme === 'horizonte' && <HorizonteBackdrop />}
 
       {/* Main content */}
       <div className="relative z-10">
@@ -151,6 +152,7 @@ export default function App() {
       <BackupReminder />
       <Toast />
       <DetroitBoot />
+      {theme === 'horizonte' && <Firmament />}
     </div>
   )
 }

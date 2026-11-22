@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import {
   X, Palette, ChevronLeft, ChevronRight, Search, Newspaper, FolderOpen, Database,
   Plus, Trash2, Download, Upload, Check, AlertCircle, MessageSquare,
-  LayoutGrid, Sparkles, Waves, Atom, ListPlus, Gauge, Layers, LayoutDashboard, Cpu, BookOpen, ScanEye, Rocket, Swords, Sticker, ScrollText, Disc3, Leaf
+  LayoutGrid, Waves, Atom, ListPlus, Gauge, Layers, LayoutDashboard, Cpu, BookOpen, ScanEye, Rocket, Swords, ScrollText, Leaf, MoonStar
 } from 'lucide-react'
 import useStore, { searchProviders } from '../store/useStore'
 import { themeList, themeLayouts } from '../themes/themes'
@@ -64,17 +64,15 @@ const sections = sectionGroups.flatMap(group => group.items)
 
 const cardLayouts = [
   { id: 'classic', label: 'Clássico', Icon: LayoutGrid, desc: 'Ícones em grade' },
-  { id: 'space', label: 'Space', Icon: Sparkles, desc: 'Janela para o cosmos' },
   { id: 'wave-particle', label: 'Dualidade', Icon: Waves, desc: 'Onda-partícula' },
   { id: 'quantum-spin', label: 'Spin', Icon: Atom, desc: 'Spin quântico' },
   { id: 'cyber', label: 'Cyber', Icon: Cpu, desc: 'Slot netrunner' },
   { id: 'archive', label: 'Arquivo', Icon: BookOpen, desc: 'Placas editoriais' },
   { id: 'android', label: 'Android', Icon: ScanEye, desc: 'Scan RK800' },
   { id: 'berserk', label: 'Painel', Icon: Swords, desc: 'Quadros de mangá' },
-  { id: 'adesivo', label: 'Adesivo', Icon: Sticker, desc: 'Adesivos coloridos' },
   { id: 'tanzaku', label: 'Tanzaku', Icon: ScrollText, desc: 'Tiras verticais' },
-  { id: 'vinil', label: 'Vinil', Icon: Disc3, desc: 'Discos de vinil' },
   { id: 'exsicata', label: 'Exsicata', Icon: Leaf, desc: 'Espécimes prensados' },
+  { id: 'dunas', label: 'Dunas', Icon: MoonStar, desc: 'Placas astronômicas' },
 ]
 
 // Estado selecionado dos cartões de opção — o fundo translúcido vem de

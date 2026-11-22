@@ -227,344 +227,6 @@ body {
   animation: orbit-glow 3s ease-in-out infinite;
 }
 
-/* Layout Space — janela de observação monocromática: preto, poeira de
-   estrelas e a borda de um planeta acesa pelo sol. Tudo estático; o hover
-   mexe só em transform/opacity. */
-.space-card {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: #000;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 12px 30px rgba(0, 0, 0, 0.55);
-  transition: transform 0.35s ease, border-color 0.35s ease;
-}
-
-.group:hover .space-card {
-  transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.26);
-}
-
-.space-card-stars {
-  opacity: 0.85;
-  background-image:
-    radial-gradient(circle at 14% 18%, #fff 0 0.6px, transparent 0.9px),
-    radial-gradient(circle at 72% 12%, #fff 0 0.8px, transparent 1.2px),
-    radial-gradient(circle at 88% 34%, #dfe8ff 0 0.5px, transparent 0.8px),
-    radial-gradient(circle at 30% 42%, #fff 0 0.4px, transparent 0.7px),
-    radial-gradient(circle at 58% 26%, #ffeede 0 0.5px, transparent 0.8px),
-    radial-gradient(circle at 8% 55%, #fff 0 0.4px, transparent 0.7px),
-    radial-gradient(circle at 46% 8%, #fff 0 0.35px, transparent 0.6px),
-    radial-gradient(circle at 92% 58%, #fff 0 0.4px, transparent 0.7px),
-    radial-gradient(circle at 22% 30%, rgba(255, 255, 255, 0.7) 0 0.3px, transparent 0.6px),
-    radial-gradient(circle at 64% 48%, rgba(255, 255, 255, 0.6) 0 0.3px, transparent 0.6px);
-}
-
-.space-card-world {
-  left: -35%;
-  top: 70%;
-  width: 170%;
-  aspect-ratio: 1;
-  --rim: color-mix(in srgb, var(--space-card-accent) 45%, white);
-  background: radial-gradient(circle at 50% 0%, #0a0c12 0%, #000 14%);
-  box-shadow:
-    inset 0 1px 1px color-mix(in srgb, var(--rim) 85%, transparent),
-    inset 0 6px 14px color-mix(in srgb, var(--space-card-accent) 14%, transparent),
-    0 -1px 3px color-mix(in srgb, var(--rim) 60%, transparent),
-    0 -6px 18px color-mix(in srgb, var(--space-card-accent) 22%, transparent);
-}
-
-/* O sol "nasce" no hover: o brilho cresce e sobe um pouco. */
-.space-card-flare {
-  left: 50%;
-  top: 70%;
-  width: 5rem;
-  height: 1.6rem;
-  margin: -0.8rem 0 0 -2.5rem;
-  opacity: 0.55;
-  background:
-    radial-gradient(ellipse 22% 16% at 50% 50%, rgba(255, 255, 255, 0.95), transparent 75%),
-    radial-gradient(ellipse 50% 50% at 50% 50%, color-mix(in srgb, var(--space-card-accent) 40%, transparent), transparent 80%);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.group:hover .space-card-flare {
-  opacity: 1;
-  transform: translateY(-1px) scaleX(1.35);
-}
-
-/* Cenas — o card inteiro usa o mesmo preto/estrelas; muda só o objeto.
-   `--rim` é a luz da atmosfera: branco levemente tingido pelo accent. */
-.space-card-scene {
-  --rim: color-mix(in srgb, var(--space-card-accent) 45%, white);
-  transition: transform 0.5s ease;
-}
-
-.space-card-scene[data-flip] {
-  transform: scaleX(-1);
-}
-
-.space-card-scene[data-scene="limb"] {
-  transform: rotate(-16deg) translateY(4%) scale(1.1);
-}
-
-.space-card-scene[data-scene="limb"][data-flip] {
-  transform: scaleX(-1) rotate(-16deg) translateY(4%) scale(1.1);
-}
-
-.space-card-scene[data-scene="overhead"] {
-  transform: rotate(180deg) translateY(-8%);
-}
-
-/* Eclipse: disco negro com coroa — o ícone fica "dentro" do eclipse. */
-.sc-eclipse {
-  left: 50%;
-  top: 50%;
-  width: 66%;
-  aspect-ratio: 1;
-  margin: -33% 0 0 -33%;
-  transform: translateY(-4%);
-  background: #000;
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--rim) 70%, transparent),
-    0 0 6px 1px color-mix(in srgb, var(--rim) 55%, transparent),
-    0 0 18px 3px color-mix(in srgb, var(--space-card-accent) 28%, transparent),
-    0 0 38px 8px color-mix(in srgb, var(--space-card-accent) 10%, transparent);
-}
-
-.sc-eclipse-bead {
-  left: 72%;
-  top: 22%;
-  width: 4px;
-  height: 4px;
-  background: #fff;
-  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.85), 0 0 14px 4px color-mix(in srgb, var(--rim) 50%, transparent);
-  opacity: 0.35;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.group:hover .sc-eclipse-bead {
-  opacity: 1;
-  transform: scale(1.4);
-}
-
-/* Planeta com anéis no canto, iluminado por baixo. */
-.sc-planet {
-  right: -14%;
-  top: -16%;
-  width: 60%;
-  aspect-ratio: 1;
-  background: radial-gradient(circle at 28% 74%, color-mix(in srgb, var(--rim) 55%, #111) 0%, #0b0d12 34%, #000 62%);
-  box-shadow: -2px 3px 10px color-mix(in srgb, var(--space-card-accent) 18%, transparent);
-  transition: transform 0.5s ease;
-}
-
-.sc-ring {
-  left: -32%;
-  top: 40%;
-  width: 164%;
-  height: 22%;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--rim) 45%, transparent);
-  box-shadow: 0 0 6px color-mix(in srgb, var(--space-card-accent) 25%, transparent);
-  transform: rotate(-22deg);
-}
-
-.group:hover .sc-planet {
-  transform: translate(-3px, 3px);
-}
-
-/* Lua crescente: disco preto com a borda acesa só de um lado. */
-.sc-moon {
-  left: -12%;
-  bottom: -14%;
-  width: 56%;
-  aspect-ratio: 1;
-  background: #000;
-  box-shadow:
-    inset -5px 5px 0 -1px color-mix(in srgb, var(--rim) 85%, transparent),
-    inset -9px 9px 14px -4px color-mix(in srgb, var(--space-card-accent) 25%, transparent),
-    4px -4px 16px -4px color-mix(in srgb, var(--space-card-accent) 30%, transparent);
-  transition: transform 0.5s ease;
-}
-
-.group:hover .sc-moon {
-  transform: translate(3px, -3px) rotate(-8deg);
-}
-
-/* Galáxia distante vista de lado. */
-.sc-galaxy {
-  right: -4%;
-  bottom: 12%;
-  width: 66%;
-  height: 22%;
-  transform: rotate(-24deg);
-  background:
-    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 246, 232, 0.55) 0%, color-mix(in srgb, var(--space-card-accent) 30%, transparent) 30%, transparent 72%);
-  opacity: 0.8;
-  transition: opacity 0.4s ease, transform 0.5s ease;
-}
-
-.sc-galaxy-core {
-  right: calc(29% - 2px);
-  bottom: calc(23% - 2px);
-  width: 4px;
-  height: 4px;
-  background: #fff;
-  box-shadow: 0 0 6px 2px rgba(255, 244, 228, 0.7);
-}
-
-.group:hover .sc-galaxy {
-  opacity: 1;
-  transform: rotate(-24deg) scale(1.12);
-}
-
-/* Estrela próxima com raios de difração + um planeta pequeno. */
-.sc-sun {
-  left: 20%;
-  bottom: 20%;
-  width: 5px;
-  height: 5px;
-  background: #fff;
-  box-shadow:
-    0 0 6px 2px rgba(255, 255, 255, 0.9),
-    0 0 18px 6px color-mix(in srgb, var(--rim) 35%, transparent);
-  transition: transform 0.4s ease;
-}
-
-.sc-sun::before,
-.sc-sun::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
-}
-
-.sc-sun::before {
-  width: 2.6rem;
-  height: 1px;
-  margin: -0.5px 0 0 -1.3rem;
-}
-
-.sc-sun::after {
-  width: 1px;
-  height: 2.6rem;
-  margin: -1.3rem 0 0 -0.5px;
-  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.7), transparent);
-}
-
-.group:hover .sc-sun {
-  transform: scale(1.35) rotate(45deg);
-}
-
-.sc-sun-planet {
-  right: 16%;
-  top: 22%;
-  width: 16%;
-  aspect-ratio: 1;
-  background: #000;
-  box-shadow: inset 2px -2px 0 -1px color-mix(in srgb, var(--rim) 80%, transparent);
-}
-
-/* Cometa cruzando o card na diagonal: cabeça brilhante e cauda longa. */
-.sc-comet {
-  left: 8%;
-  top: 72%;
-  width: 70%;
-  height: 1.5px;
-  transform: rotate(-28deg);
-  transform-origin: left center;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), color-mix(in srgb, var(--space-card-accent) 35%, transparent) 35%, transparent);
-  box-shadow: 0 0 6px color-mix(in srgb, var(--space-card-accent) 30%, transparent);
-  transition: transform 0.5s ease;
-}
-
-.sc-comet-head {
-  left: -2px;
-  top: -2px;
-  width: 5px;
-  height: 5px;
-  background: #fff;
-  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.85), 0 0 14px 4px color-mix(in srgb, var(--rim) 40%, transparent);
-}
-
-.group:hover .sc-comet {
-  transform: rotate(-28deg) translateX(-4px) scaleX(1.12);
-}
-
-/* Duas estrelas orbitando um centro comum — a órbita gira no hover. */
-.sc-orbit {
-  left: 50%;
-  top: 50%;
-  width: 82%;
-  height: 34%;
-  margin: -17% 0 0 -41%;
-  border: 1px dashed color-mix(in srgb, var(--rim) 22%, transparent);
-  transform: rotate(-18deg);
-}
-
-.sc-binary {
-  width: 4px;
-  height: 4px;
-  background: #fff;
-  transition: transform 0.6s ease;
-}
-
-.sc-binary-a {
-  left: 12%;
-  top: 60%;
-  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.85), 0 0 14px 4px color-mix(in srgb, var(--rim) 45%, transparent);
-}
-
-.sc-binary-b {
-  right: 12%;
-  top: 36%;
-  width: 3px;
-  height: 3px;
-  background: color-mix(in srgb, var(--space-card-accent) 50%, white);
-  box-shadow: 0 0 5px 2px color-mix(in srgb, var(--space-card-accent) 60%, transparent);
-}
-
-.group:hover .sc-binary-a {
-  transform: translate(6px, 2px);
-}
-
-.group:hover .sc-binary-b {
-  transform: translate(-6px, -2px);
-}
-
-@keyframes spaceCardSignal {
-  0%, 100% { opacity: 0.3; transform: scale(0.75); }
-  50% { opacity: 1; transform: scale(1); }
-}
-
-.space-card-signal {
-  top: 0.72rem;
-  right: 0.8rem;
-  width: 3px;
-  height: 3px;
-  background: #fff;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-  animation: spaceCardSignal 2.4s ease-in-out infinite;
-}
-
-.space-card-label {
-  top: 0.55rem;
-  left: 0.75rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 7px;
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.space-card-icon {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    0 8px 22px rgba(0, 0, 0, 0.6);
-}
-
 /* Card hover effects */
 .card-hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -3410,359 +3072,6 @@ input:focus, button:focus, select:focus {
   }
 }
 
-/* @@pop START */
-/* =========================================================
-   BRUTALISMO POP — tema claro. Borda preta grossa, sombra dura
-   deslocada (sem blur), cores chapadas e halftone. Nada anima sozinho:
-   o movimento vem só do hover/clique (transform + sombra).
-   Layout de card: Adesivo.
-   ========================================================= */
-
-[data-theme="pop"] body {
-  background-color: var(--bg);
-  font-weight: 500;
-}
-
-/* Halftone: pontos que somem para baixo. */
-[data-theme="pop"] body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(17, 17, 17, 0.14) 1.3px, transparent 1.7px);
-  background-size: 16px 16px;
-  -webkit-mask-image: linear-gradient(180deg, #000, transparent 75%);
-  mask-image: linear-gradient(180deg, #000, transparent 75%);
-}
-
-[data-theme="pop"] #root {
-  position: relative;
-  z-index: 1;
-}
-
-/* Formas chapadas nos cantos — só onde sobra margem (≥1100px). */
-[data-theme="pop"] .orbit-shell::before,
-[data-theme="pop"] .orbit-shell::after {
-  content: '';
-  position: fixed;
-  z-index: 0;
-  display: none;
-  border: 3px solid #111;
-  pointer-events: none;
-}
-
-[data-theme="pop"] .orbit-shell::before {
-  top: 150px;
-  left: -90px;
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  background: var(--pop-pink);
-}
-
-[data-theme="pop"] .orbit-shell::after {
-  right: -70px;
-  bottom: 90px;
-  width: 200px;
-  height: 200px;
-  background: var(--pop-blue);
-  transform: rotate(18deg);
-}
-
-@media (min-width: 1100px) {
-  [data-theme="pop"] .orbit-shell::before,
-  [data-theme="pop"] .orbit-shell::after { display: block; }
-}
-
-[data-theme="pop"] ::selection {
-  background: var(--accent);
-  color: #111;
-}
-
-[data-theme="pop"] {
-  scrollbar-color: #111 var(--bg);
-  scrollbar-width: thin;
-}
-
-/* Cabeçalho: capa de gibi — o título vira um adesivo torto. */
-[data-theme="pop"] .theme-masthead {
-  border-bottom: 3px solid #111;
-  color: #111;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-}
-
-[data-theme="pop"] .theme-masthead strong {
-  padding: 0.25rem 1rem;
-  border: 3px solid #111;
-  background: var(--pop-yellow);
-  box-shadow: 4px 4px 0 #111;
-  color: #111;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  transform: rotate(-2deg);
-}
-
-/* Relógio: numerais gordos com sombra dura em rosa. */
-[data-theme="pop"] .orbit-clock > div:first-child {
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  text-shadow: 4px 4px 0 var(--pop-pink), 7px 7px 0 #111;
-}
-
-[data-theme="pop"] .orbit-clock > div:first-child > span:first-child {
-  color: var(--pop-pink);
-  opacity: 1;
-}
-
-@media (max-width: 640px) {
-  [data-theme="pop"] .orbit-clock > div:first-child {
-    text-shadow: 3px 3px 0 var(--pop-pink), 5px 5px 0 #111;
-  }
-}
-
-[data-theme="pop"] .orbit-clock > div:last-child {
-  width: fit-content;
-  margin: 1.1rem auto 0;
-  padding: 0.1rem 0.9rem;
-  border: 2.5px solid #111;
-  background: var(--pop-yellow);
-  box-shadow: 3px 3px 0 #111;
-  color: #111;
-  font-size: 0.85rem;
-  font-weight: 700;
-  transform: rotate(-1.5deg);
-}
-
-/* Superfícies: borda preta grossa + sombra dura, sem blur. */
-[data-theme="pop"] .bg-card {
-  border: 2.5px solid #111;
-  box-shadow: 4px 4px 0 #111;
-}
-
-[data-theme="pop"] .site-card-action {
-  border-width: 2px;
-  box-shadow: 2px 2px 0 #111;
-}
-
-/* Busca: no foco a sombra vira rosa e o campo "sobe". */
-[data-theme="pop"] .orbit-search input {
-  border-radius: 12px;
-  border-width: 3px;
-  box-shadow: 5px 5px 0 #111;
-  font-weight: 500;
-  transition: transform 120ms ease, box-shadow 120ms ease;
-}
-
-[data-theme="pop"] .orbit-search input:focus {
-  outline: none;
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 var(--accent);
-}
-
-/* O brilho colorido do provedor some: o "G" já basta. */
-[data-theme="pop"] .orbit-search > div[aria-hidden] {
-  display: none;
-}
-
-[data-theme="pop"] .orbit-search-provider span {
-  border: 2px solid #111;
-  border-radius: 6px !important;
-}
-
-[data-theme="pop"] input,
-[data-theme="pop"] textarea,
-[data-theme="pop"] select {
-  border-color: #111;
-}
-
-[data-theme="pop"] input:not(.orbit-search input):focus,
-[data-theme="pop"] textarea:focus {
-  outline: none;
-  box-shadow: 3px 3px 0 var(--accent);
-}
-
-/* Botões: sobem no hover, afundam no clique. */
-[data-theme="pop"] button.bg-accent,
-[data-theme="pop"] a.bg-accent {
-  border: 2.5px solid #111;
-  box-shadow: 3px 3px 0 #111;
-  color: #111 !important;
-  font-weight: 700;
-  transition: transform 100ms ease, box-shadow 100ms ease;
-}
-
-[data-theme="pop"] button.bg-accent:hover:not(:disabled),
-[data-theme="pop"] a.bg-accent:hover {
-  opacity: 1;
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 #111;
-}
-
-[data-theme="pop"] button.bg-accent:active:not(:disabled),
-[data-theme="pop"] a.bg-accent:active {
-  transform: translate(3px, 3px);
-  box-shadow: 0 0 0 #111;
-}
-
-/* Abas: pílulas com borda; a ativa em amarelo. */
-[data-theme="pop"] .orbit-category-filter button:not(.flex-shrink-0) {
-  border: 2.5px solid #111;
-  box-shadow: 3px 3px 0 #111;
-  color: #111;
-  font-weight: 700;
-  transition: transform 100ms ease, box-shadow 100ms ease;
-}
-
-[data-theme="pop"] .orbit-category-filter .bg-accent {
-  background: var(--pop-yellow);
-}
-
-[data-theme="pop"] .orbit-category-filter button:not(.bg-accent):not(.flex-shrink-0) {
-  background: #fff;
-}
-
-[data-theme="pop"] .orbit-category-filter button:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 #111;
-}
-
-[data-theme="pop"] .orbit-category-filter button:active {
-  transform: translate(3px, 3px);
-  box-shadow: 0 0 0 #111;
-}
-
-[data-theme="pop"] .orbit-category-filter .flex-shrink-0 {
-  border: 2.5px dashed #111;
-  color: #111;
-  font-weight: 700;
-}
-
-[data-theme="pop"] .orbit-category-filter .flex-shrink-0:hover {
-  background: var(--pop-green);
-}
-
-[data-theme="pop"] h2 {
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-/* Notícias: cada manchete é uma tira com sombra dura. */
-[data-theme="pop"] a.bg-card {
-  transition: transform 120ms ease, box-shadow 120ms ease;
-}
-
-[data-theme="pop"] a.bg-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--pop-pink);
-}
-
-/* Dock: botões chapados; o ativo em rosa. */
-[data-theme="pop"] .fixed button.bg-card:hover,
-[data-theme="pop"] .fixed button.bg-accent {
-  box-shadow: 3px 3px 0 #111;
-}
-
-/* Modais: painel branco com sombra dura por cima de um fundo escuro chapado. */
-[data-theme="pop"] .modal-backdrop {
-  background: rgba(17, 17, 17, 0.55);
-  backdrop-filter: none;
-}
-
-[data-theme="pop"] .modal-backdrop > .bg-card {
-  border-radius: 18px;
-  border-width: 3px;
-  box-shadow: 8px 8px 0 #111;
-}
-
-/* Layout Adesivo — cada link é um adesivo: cor fixa por nome, borda preta,
-   sombra dura, um dobrado no canto e uma inclinação de ±2°. Hover levanta,
-   clique afunda. Só transform + box-shadow (sem blur). */
-.adesivo-panel {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  padding: 0.7rem 0.4rem 0.55rem;
-  border: 3px solid #111;
-  border-radius: 14px;
-  background: var(--adesivo-bg, #ffd23f);
-  box-shadow: 4px 4px 0 #111;
-  color: #111;
-  cursor: pointer;
-  transform: rotate(var(--adesivo-tilt, 0deg));
-  transition: transform 120ms ease, box-shadow 120ms ease;
-}
-
-.adesivo-site:hover .adesivo-panel,
-.adesivo-panel:focus-visible {
-  transform: translate(-2px, -2px) rotate(0deg);
-  box-shadow: 6px 6px 0 #111;
-}
-
-.adesivo-panel:focus-visible {
-  outline: none;
-}
-
-.adesivo-site:active .adesivo-panel {
-  transform: translate(3px, 3px) rotate(0deg);
-  box-shadow: 0 0 0 #111;
-}
-
-/* Dobrado do canto superior direito: triângulo de fundo claro (a "falta" do
-   adesivo) com o verso mais claro dobrado por cima. */
-.adesivo-peel {
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  width: 22px;
-  height: 22px;
-  border-top-right-radius: 14px;
-  background: linear-gradient(225deg, var(--bg) 0 46%, #111 46% 54%, color-mix(in srgb, var(--adesivo-bg, #ffd23f) 55%, #fff) 54% 100%);
-}
-
-.adesivo-icon {
-  display: grid;
-  place-items: center;
-  width: 2.7rem;
-  height: 2.7rem;
-  border: 2.5px solid #111;
-  border-radius: 50%;
-  background: #fff;
-}
-
-.adesivo-icon img {
-  width: 1.4rem;
-  height: 1.4rem;
-  object-fit: contain;
-}
-
-/* Fallback de letra (SiteIcon só renderiza quando o favicon falha). */
-.adesivo-icon > span {
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.adesivo-name {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-overflow: ellipsis;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-/* @@pop END */
-
 /* @@sumie START */
 /* =========================================================
    SUMI-E — pintura a tinta sobre papel washi. Um preto de tinta, um
@@ -4141,341 +3450,6 @@ input:focus, button:focus, select:focus {
 }
 /* @@sumie END */
 
-/* @@lofi START */
-/* =========================================================
-   LO-FI · QUARTO — noite de chuva na janela, luz de abajur e bokeh da
-   cidade. Fundo estático (gradientes); o movimento é a chuva (transform)
-   e o disco girando no hover. O botão do cabeçalho liga o som de chuva
-   que o Orbit já sintetiza. Layout de card: Vinil.
-   ========================================================= */
-
-[data-theme="lofi"] body {
-  background-color: var(--bg);
-  background-image:
-    /* Abajur: calor no canto inferior esquerdo. */
-    radial-gradient(ellipse 45% 50% at 6% 104%, rgba(255, 180, 84, 0.3), transparent 70%),
-    /* Bokeh da cidade lá fora, bem desfocado (só gradiente). */
-    radial-gradient(circle 46px at 72% 88%, rgba(255, 143, 171, 0.17), transparent 70%),
-    radial-gradient(circle 64px at 84% 94%, rgba(255, 180, 84, 0.15), transparent 70%),
-    radial-gradient(circle 38px at 58% 96%, rgba(111, 214, 200, 0.14), transparent 70%),
-    radial-gradient(circle 52px at 93% 82%, rgba(183, 156, 255, 0.16), transparent 70%),
-    radial-gradient(circle 34px at 40% 92%, rgba(255, 180, 84, 0.1), transparent 70%),
-    linear-gradient(180deg, #0f0a1c 0%, #1d1231 45%, #2e1b45 100%);
-  background-attachment: fixed;
-}
-
-/* Vidro da janela: um véu levíssimo com reflexo diagonal. */
-[data-theme="lofi"] body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: linear-gradient(115deg, transparent 0 38%, rgba(255, 255, 255, 0.025) 42%, transparent 48% 100%);
-}
-
-[data-theme="lofi"] #root {
-  position: relative;
-  z-index: 1;
-}
-
-/* Chuva (LofiRain): fios diagonais e gotas escorrendo. */
-.lofi-rain {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.lofi-streak {
-  position: absolute;
-  top: -50px;
-  width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(190, 205, 255, 0.85));
-  opacity: 0;
-  animation: lofiStreak var(--dur, 1.8s) linear var(--delay, 0s) infinite;
-}
-
-@keyframes lofiStreak {
-  0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(12deg); }
-  12% { opacity: var(--peak, 0.25); }
-  88% { opacity: var(--peak, 0.25); }
-  100% { opacity: 0; transform: translate3d(-190px, 112vh, 0) rotate(12deg); }
-}
-
-.lofi-drop {
-  position: absolute;
-  top: -30px;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.55), rgba(190, 205, 255, 0.16) 55%, transparent 75%);
-  opacity: 0;
-  animation: lofiDrop var(--dur, 40s) linear var(--delay, 0s) infinite;
-}
-
-@keyframes lofiDrop {
-  0% { opacity: 0; transform: translate3d(0, 0, 0); }
-  6% { opacity: 0.7; }
-  92% { opacity: 0.5; }
-  100% { opacity: 0; transform: translate3d(18px, 110vh, 0); }
-}
-
-[data-motion="reduced"] .lofi-rain {
-  display: none;
-}
-
-[data-theme="lofi"] ::selection {
-  background: rgba(255, 180, 84, 0.35);
-}
-
-[data-theme="lofi"] {
-  scrollbar-color: rgba(255, 180, 84, 0.3) transparent;
-  scrollbar-width: thin;
-}
-
-/* Cabeçalho: relógio de parede em texto miúdo; o título é manuscrito. */
-[data-theme="lofi"] .theme-masthead {
-  border-bottom: 1px solid rgba(255, 180, 84, 0.16);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-}
-
-[data-theme="lofi"] .theme-masthead strong {
-  color: var(--accent);
-  font-family: 'Caveat', cursive;
-  font-size: 1.9rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: none;
-}
-
-/* Botão de chuva: pílula discreta que vira âmbar quando toca. */
-[data-theme="lofi"] .theme-masthead-action {
-  justify-self: end;
-  padding: 0.3rem 0.85rem;
-  border: 1px solid rgba(255, 180, 84, 0.35);
-  border-radius: 999px;
-  background: rgba(34, 22, 52, 0.6);
-  color: var(--text);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
-}
-
-[data-theme="lofi"] .theme-masthead-action:hover,
-[data-theme="lofi"] .theme-masthead-action[aria-pressed="true"] {
-  border-color: var(--accent);
-  background: rgba(255, 180, 84, 0.16);
-  color: var(--accent);
-}
-
-/* Relógio: manuscrito, com o brilho quente do abajur. */
-[data-theme="lofi"] .orbit-clock > div:first-child {
-  font-family: 'Caveat', cursive;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-shadow: 0 0 36px rgba(255, 180, 84, 0.4);
-}
-
-[data-theme="lofi"] .orbit-clock > div:first-child > span:first-child {
-  color: var(--accent);
-  opacity: 1;
-}
-
-[data-theme="lofi"] .orbit-clock > div:last-child {
-  color: var(--muted);
-  font-size: 0.85rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-}
-
-/* Superfícies: vidro roxo fosco com fio âmbar. */
-[data-theme="lofi"] .bg-card {
-  border-color: rgba(255, 180, 84, 0.16);
-  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.8);
-}
-
-/* Busca: pílula fosca; o foco acende como uma lâmpada. */
-[data-theme="lofi"] .orbit-search input {
-  border-radius: 999px;
-  background: rgba(34, 22, 52, 0.72);
-  backdrop-filter: blur(6px);
-}
-
-[data-theme="lofi"] .orbit-search input:focus {
-  outline: none;
-  border-color: rgba(255, 180, 84, 0.6);
-  box-shadow: 0 0 0 4px rgba(255, 180, 84, 0.12), 0 0 44px -8px rgba(255, 180, 84, 0.4);
-}
-
-[data-theme="lofi"] .orbit-search > div[aria-hidden] {
-  opacity: 0.25;
-}
-
-[data-theme="lofi"] .orbit-category-filter .bg-accent {
-  box-shadow: 0 0 22px -6px rgba(255, 180, 84, 0.6);
-  font-weight: 600;
-}
-
-[data-theme="lofi"] .orbit-category-filter button:not(.bg-accent):not(.flex-shrink-0):hover {
-  background: rgba(255, 180, 84, 0.1);
-  color: var(--text);
-}
-
-[data-theme="lofi"] h2 {
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-[data-theme="lofi"] a.bg-card {
-  transition: transform 220ms ease, border-color 220ms ease;
-}
-
-[data-theme="lofi"] a.bg-card:hover {
-  border-color: rgba(255, 180, 84, 0.5);
-  transform: translateY(-2px);
-}
-
-[data-theme="lofi"] .modal-backdrop {
-  background: rgba(12, 7, 24, 0.72);
-}
-
-[data-theme="lofi"] .modal-backdrop > .bg-card {
-  border-radius: 22px;
-  box-shadow: 0 50px 110px -30px #000, 0 0 70px -24px rgba(255, 180, 84, 0.22);
-}
-
-/* Layout Vinil — disco com sulcos (gradiente radial repetido), rótulo
-   colorido com o favicon, brilho parado por cima (a luz do abajur) e um
-   braço de vitrola que pousa no hover enquanto o disco gira. Só
-   transform/opacity. */
-.vinil-disc {
-  --label: var(--accent);
-  position: relative;
-  width: 84px;
-  height: 84px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, #050507 0 4%, transparent 4.5%),
-    repeating-radial-gradient(circle at 50% 50%, #0b0b0f 0 1.5px, #1b1a22 1.5px 2.5px);
-  box-shadow: 0 12px 22px -10px #000, inset 0 0 0 2px #050507, inset 0 0 0 3px rgba(255, 255, 255, 0.07);
-  cursor: pointer;
-  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-@media (min-width: 640px) {
-  .vinil-disc { width: 92px; height: 92px; }
-}
-
-.vinil-disc[data-tone="1"] { --label: var(--lofi-rose, #ff8fab); }
-.vinil-disc[data-tone="2"] { --label: var(--lofi-teal, #6fd6c8); }
-.vinil-disc[data-tone="3"] { --label: var(--lofi-lilac, #b79cff); }
-.vinil-disc[data-tone="4"] { --label: var(--text); }
-
-.vinil-site:hover .vinil-disc,
-.vinil-disc:focus-visible {
-  transform: translateY(-4px);
-}
-
-.vinil-disc:focus-visible {
-  outline: 1px solid var(--accent);
-  outline-offset: 4px;
-}
-
-.vinil-spin {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-}
-
-.vinil-site:hover .vinil-spin {
-  animation: vinilSpin 3.4s linear infinite;
-}
-
-@keyframes vinilSpin {
-  to { transform: rotate(360deg); }
-}
-
-[data-motion="reduced"] .vinil-site:hover .vinil-spin {
-  animation: none;
-}
-
-/* Rótulo central com o favicon no meio (o furo do eixo ficaria atrás dele). */
-.vinil-label {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 42%;
-  height: 42%;
-  border-radius: 50%;
-  background: var(--label);
-  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.18);
-}
-
-.vinil-label img {
-  width: 58%;
-  height: 58%;
-  object-fit: contain;
-}
-
-/* Fallback de letra. */
-.vinil-label > span {
-  color: #1a1024;
-  font-size: 0.85rem;
-  font-weight: 800;
-}
-
-/* Brilho fixo: não gira junto com o disco. */
-.vinil-sheen {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  background: conic-gradient(from 20deg, transparent 0 18%, rgba(255, 255, 255, 0.16) 24%, transparent 32% 68%, rgba(255, 255, 255, 0.1) 75%, transparent 83%);
-}
-
-/* Braço da vitrola: em repouso fica levantado; no hover a ponta pousa no disco. */
-.vinil-arm {
-  position: absolute;
-  top: 6%;
-  right: -7%;
-  width: 62%;
-  height: 3px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #8f826f, #d6c6ad);
-  opacity: 0.5;
-  transform: rotate(10deg);
-  transform-origin: 100% 50%;
-  transition: transform 350ms ease, opacity 350ms ease;
-}
-
-.vinil-site:hover .vinil-arm {
-  opacity: 0.9;
-  transform: rotate(-34deg);
-}
-
-.vinil-name {
-  max-width: 6.5rem;
-  margin-top: 0.7rem;
-  overflow: hidden;
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: color 200ms ease;
-}
-
-.vinil-site:hover .vinil-name {
-  color: var(--text);
-}
-/* @@lofi END */
-
 /* @@herbario START */
 /* =========================================================
    HERBÁRIO · NATURALISTA — caderno de campo e gabinete botânico do
@@ -4833,6 +3807,469 @@ input:focus, button:focus, select:focus {
   white-space: nowrap;
 }
 /* @@herbario END */
+
+/* @@horizonte START */
+/* =========================================================
+   HORIZONTE · DUNAS — deserto à noite, em preto e branco ("Breu").
+   Moldura arredondada com céu girando, Via Láctea, lua em halo,
+   dunas de partículas pseudo-3D e firmamento fixo com mix-blend-mode.
+   Layout de card: Dunas (carta celeste com coordenadas equatoriais).
+   ========================================================= */
+
+[data-theme="horizonte"] {
+  --bg-rgb: 0 0 0;
+  --light-rgb: 255 255 255;
+  --particle-rgb: 245 245 245;
+  --particle-star-rgb: 240 240 240;
+  --frame: #030303;
+  --frame-hi: #0c0c0c;
+  --frame-lo: #000000;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  scrollbar-color: rgba(250, 250, 250, 0.24) transparent;
+  scrollbar-width: thin;
+}
+
+[data-theme="horizonte"] body {
+  background:
+    radial-gradient(60% 40% at 50% 0%, rgba(255, 255, 255, 0.06), transparent 70%),
+    var(--bg);
+}
+
+[data-theme="horizonte"] ::selection {
+  background: #fafafa;
+  color: #000000;
+}
+
+/* Moldura do hero: quadro arredondado no topo (não reage ao scroll). */
+.horizonte-frame {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 0;
+  height: calc(100svh - 32px);
+  min-height: 560px;
+  max-height: 1100px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: radial-gradient(90% 60% at 50% 30%, var(--frame-hi, #0c0c0c) 0%, var(--frame, #030303) 60%, var(--frame-lo, #000000) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 40px 120px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .horizonte-frame {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    height: calc(100svh - 16px);
+    min-height: 600px;
+    border-radius: 24px;
+  }
+}
+
+.horizonte-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.horizonte-moon {
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  box-shadow:
+    0 0 18px 6px rgb(var(--light-rgb, 255 255 255) / 0.55),
+    0 0 90px 40px rgb(var(--light-rgb, 255 255 255) / 0.08),
+    0 0 220px 120px rgb(var(--light-rgb, 255 255 255) / 0.04);
+  pointer-events: none;
+}
+
+.horizonte-moon::after {
+  content: '';
+  position: absolute;
+  inset: -70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(var(--light-rgb, 255 255 255) / 0.1) 0%, rgb(var(--light-rgb, 255 255 255) / 0) 65%);
+  animation: horizonteMoonBreath 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes horizonteMoonBreath {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+.horizonte-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
+    linear-gradient(to bottom, transparent 70%, rgb(var(--bg-rgb, 0 0 0) / 0.7));
+}
+
+/* Firmamento: estrelas sobre a página inteira em `difference`. */
+.horizonte-firmament {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.horizonte-firmament-canvas {
+  display: block;
+}
+
+/* Cabeçalho de observatório. */
+[data-theme="horizonte"] .theme-masthead {
+  border-bottom: 1px solid rgba(250, 250, 250, 0.12);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+}
+
+[data-theme="horizonte"] .theme-masthead strong {
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-shadow: 0 0 22px rgba(255, 255, 255, 0.28);
+}
+
+/* Relógio: serifa com gradiente lunar; data em mono espaçada. */
+[data-theme="horizonte"] .orbit-clock {
+  padding-top: clamp(2.25rem, 6vh, 3.75rem);
+  padding-bottom: 1.5rem;
+}
+
+[data-theme="horizonte"] .orbit-clock > div:first-child {
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  background: linear-gradient(180deg, #ffffff 20%, #a3a3a3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.24));
+}
+
+[data-theme="horizonte"] .orbit-clock > div:first-child > span {
+  color: inherit;
+}
+
+[data-theme="horizonte"] .orbit-clock > div:last-child {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Busca: pílula escura translúcida e monocromática. */
+[data-theme="horizonte"] .orbit-search input {
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.52);
+  backdrop-filter: blur(6px);
+  border-color: rgba(250, 250, 250, 0.16);
+}
+
+[data-theme="horizonte"] .orbit-search input:focus {
+  outline: none;
+  border-color: rgba(250, 250, 250, 0.48);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06), 0 0 36px -10px rgba(255, 255, 255, 0.28);
+}
+
+[data-theme="horizonte"] .orbit-search > div[aria-hidden] {
+  opacity: 0.14;
+  filter: grayscale(1);
+}
+
+[data-theme="horizonte"] .orbit-search-provider > span {
+  filter: grayscale(0.85) contrast(1.05);
+  transition: filter 0.3s ease;
+}
+
+[data-theme="horizonte"] .orbit-search-provider:hover > span {
+  filter: none;
+}
+
+/* Abas de categoria em mono, alto contraste preto/branco. */
+[data-theme="horizonte"] .orbit-category-filter button,
+[data-theme="horizonte"] .orbit-subcategory-bar button {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+[data-theme="horizonte"] button.bg-accent,
+[data-theme="horizonte"] a.bg-accent,
+[data-theme="horizonte"] .orbit-category-filter .bg-accent {
+  color: #000000 !important;
+  font-weight: 500;
+}
+
+[data-theme="horizonte"] .orbit-category-filter .bg-accent {
+  box-shadow: 0 0 22px -6px rgba(255, 255, 255, 0.45);
+}
+
+[data-theme="horizonte"] .orbit-category-filter button:not(.bg-accent):not(.flex-shrink-0):hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+[data-theme="horizonte"] .bg-card {
+  border-color: rgba(250, 250, 250, 0.14);
+}
+
+[data-theme="horizonte"] a.bg-card {
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.9), rgba(6, 6, 6, 0.94));
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="horizonte"] a.bg-card:hover {
+  border-color: rgba(250, 250, 250, 0.42);
+  transform: translateY(-2px);
+}
+
+[data-theme="horizonte"] .modal-backdrop {
+  background: rgba(0, 0, 0, 0.76);
+}
+
+[data-theme="horizonte"] .modal-backdrop > .bg-card {
+  border-radius: 18px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Layout Dunas — placa astronômica compacta e silenciosa: vidro escuro
+   translúcido com micro-marcações gravadas no topo, poeira estelar fina,
+   um brilho de difração discreto e carimbo itálico, preservando as cores
+   originais dos ícones. */
+.dunas-plate {
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--text) 16%, transparent);
+  border-radius: 6px;
+  background:
+    radial-gradient(85% 70% at 50% 35%, color-mix(in srgb, var(--text) 4%, transparent), transparent 65%),
+    color-mix(in srgb, var(--card) 66%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 0 0 3px rgba(0, 0, 0, 0.32),
+    inset 0 0 0 4px color-mix(in srgb, var(--text) 6%, transparent),
+    0 10px 24px -12px rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+  transition:
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.dunas-site:hover .dunas-plate,
+.dunas-plate:focus-visible {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--text) 36%, transparent);
+  box-shadow:
+    inset 0 0 0 3px rgba(0, 0, 0, 0.32),
+    inset 0 0 0 4px color-mix(in srgb, var(--text) 14%, transparent),
+    0 16px 32px -12px rgba(0, 0, 0, 0.7);
+}
+
+.dunas-plate:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+[data-motion="reduced"] .dunas-plate {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Micro-régua gravada apenas na borda superior da placa. */
+.dunas-plate-ticks {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  left: 6px;
+  height: 5px;
+  opacity: 0.24;
+  background-image:
+    repeating-linear-gradient(90deg, var(--text) 0 1px, transparent 1px 20px),
+    repeating-linear-gradient(90deg, var(--text) 0 1px, transparent 1px 5px);
+  background-size: 100% 5px, 100% 2.5px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.dunas-site:hover .dunas-plate-ticks {
+  opacity: 0.45;
+}
+
+/* Poeira estelar muito fina ao fundo. */
+.dunas-plate-stars {
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+  background-image:
+    radial-gradient(circle at 20% 28%, color-mix(in srgb, var(--text) 80%, transparent) 0 0.5px, transparent 0.9px),
+    radial-gradient(circle at 76% 36%, color-mix(in srgb, var(--text) 70%, transparent) 0 0.5px, transparent 0.85px),
+    radial-gradient(circle at 64% 78%, color-mix(in srgb, var(--text) 60%, transparent) 0 0.45px, transparent 0.85px),
+    radial-gradient(circle at 26% 74%, color-mix(in srgb, var(--text) 55%, transparent) 0 0.45px, transparent 0.8px);
+  background-size: 80px 68px;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.dunas-site:hover .dunas-plate-stars {
+  opacity: 0.72;
+}
+
+/* Névoa tênue na base da placa. */
+.dunas-plate-haze {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 44%;
+  opacity: 0.45;
+  background: radial-gradient(85% 75% at 50% 100%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 72%);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.dunas-site:hover .dunas-plate-haze {
+  opacity: 0.85;
+}
+
+/* Um único ponto de difração discreto no canto. */
+.dunas-glint {
+  position: absolute;
+  top: 22%;
+  left: 18%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--text);
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.4s ease;
+}
+
+.dunas-glint[data-alt] {
+  top: 74%;
+  left: 78%;
+}
+
+.dunas-glint::before,
+.dunas-glint::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: linear-gradient(90deg, transparent, var(--text), transparent);
+}
+
+.dunas-glint::before {
+  width: 9px;
+  height: 0.75px;
+  margin: -0.375px 0 0 -4.5px;
+}
+
+.dunas-glint::after {
+  width: 0.75px;
+  height: 9px;
+  margin: -4.5px 0 0 -0.375px;
+  background: linear-gradient(180deg, transparent, var(--text), transparent);
+}
+
+.dunas-site:hover .dunas-glint {
+  opacity: 0.9;
+  transform: scale(1.15);
+}
+
+/* Carimbo discreto da placa no canto superior direito. */
+.dunas-plate-id {
+  position: absolute;
+  top: 0.36rem;
+  right: 0.45rem;
+  z-index: 1;
+  color: color-mix(in srgb, var(--muted) 88%, var(--text));
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.58rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.dunas-site:hover .dunas-plate-id {
+  opacity: 0.92;
+}
+
+/* Ícone colorido centralizado em espaço limpo. */
+.dunas-icon {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, transparent 70%);
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dunas-site:hover .dunas-icon {
+  transform: scale(1.06);
+}
+
+.dunas-icon img {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.14)) drop-shadow(0 2px 5px rgba(0, 0, 0, 0.38));
+}
+
+.dunas-icon > span {
+  color: var(--text);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+.dunas-name {
+  max-width: 6.4rem;
+  margin-top: 0.5rem;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.dunas-site:hover .dunas-name {
+  color: var(--text);
+}
+/* @@horizonte END */
 
 /* =========================================================
    DESEMPENHO

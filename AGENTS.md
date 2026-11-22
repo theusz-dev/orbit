@@ -45,7 +45,7 @@ src/
 - Exporta também o array `searchProviders` (Google, DuckDuckGo, YouTube, Ecosia, AI Chat).
 
 ### Temas
-- 10 temas: `minimal-light`, `premium-dark`, `space`, `cyberpunk`, `nous-archive`, `detroit`, `berserk` ("Berserk · Eclipse"), `pop`, `sumie`, `lofi` (ver "Temas com layout próprio").
+- 10 temas: `minimal-light`, `premium-dark`, `space`, `cyberpunk`, `nous-archive`, `detroit`, `berserk` ("Berserk · Eclipse"), `sumie`, `herbario`, `horizonte` (ver "Temas com layout próprio").
 - Temas com variáveis próprias (`--archive-*`, `--dbh-*`, `--berserk-*`) só as definem no próprio tema — o CSS que as usa sempre tem fallback.
 - `resolveTheme()` em `themes.js` corrige id órfão no boot e no import (cai para `premium-dark`).
 - Temas são **CSS custom properties** aplicadas via `document.documentElement.style.setProperty()` (não classes).
@@ -61,27 +61,26 @@ src/
   - `CursorStardust` (canvas único, `z-[45]`, `pointer-events: none`): o cursor vira um cometa — aura que segue com inércia (vira anel de mira sobre o que é clicável), rastro de poeira cósmica com estrelas cintilantes que se ligam em constelações, e supernova (flash + ondas + explosão) no clique. Só renderiza no `premium-dark`, com ponteiro fino e fora do modo leve; sobre `input`/`textarea` só a aura aparece. O laço de rAF só roda enquanto há algo vivo (aura some após ~2,6 s parado) e para com a aba oculta.
   - `.orbit-news-section` (App.jsx) existe para o filete de luz do tema; não remova a classe.
 
-### Temas com layout próprio (`pop`, `sumie`, `lofi`)
+### Temas com layout próprio
 
-Cada um destes três temas nasceu com um layout de card. Tema e layout continuam **independentes** — `themeLayouts` (`themes.js`) só guarda o par, e Configurações oferece "Aplicar" o layout combinado.
+Cada um destes temas nasceu com um layout de card. Tema e layout continuam **independentes** — `themeLayouts` (`themes.js`) só guarda o par, e Configurações oferece "Aplicar" o layout combinado.
 
 | Tema | Layout | Ideia |
 |------|--------|-------|
-| `pop` (Brutalismo Pop) | `adesivo` | Tema claro. Adesivo colorido (cor por nome), sombra dura sem blur, dobra no canto; clique "afunda". |
 | `sumie` (Sumi-e) | `tanzaku` | Papel washi, tinta e um vermelho de carimbo. Tira vertical pendurada por cordão, nome em `writing-mode: vertical-rl`, selo hanko; balança no hover. |
-| `lofi` (Lo-fi · Quarto) | `vinil` | Noite de chuva. Disco com sulcos e rótulo colorido; o braço da vitrola pousa e o disco gira no hover. |
+| `herbario` (Herbário · Naturalista) | `exsicata` | Ficha de herbário. |
+| `horizonte` (Horizonte · Dunas) | `dunas` | Card translúcido sobre a paisagem. |
 
 - **Infra compartilhada dos cards novos**: `hooks/useSiteCard.js` (sortable + hover + abrir via `openSite` + editar/excluir), `components/SiteCardActions.jsx` (botões do hover; reestilize por `.site-card-action`) e `utils/hash.js` (`hashName`, `getHost`). Cards novos **não** repetem esse boilerplate. Os cards antigos ainda o têm inline.
 - **Registrar um layout** exige tocar em: `utils/cardLayout.js` (`cardLayoutIds`), `SiteCard.jsx` (`LAYOUT_COMPONENTS`), `SiteGrid.jsx` (`GRID_CLASSES`, e `KBD_CLASSES` se o `<kbd>` precisar de outra posição), `SettingsModal.jsx` (`cardLayouts`) e `themes.js` (`themeLayouts`).
-- **Remover um tema**: cada CSS vive num bloco `/* @@nome START */ … /* @@nome END */` em `index.css`. Apague o bloco, a entrada em `themes.js` (+ `themeLayouts`), o componente do card, os registros acima e, se houver, o cenário em `App.jsx` (`LofiRain`) e a linha em `ThemeMasthead`. `resolveTheme`/`resolveCardLayout` já tratam um id salvo que não existe mais.
-- `ThemeMasthead` (`MASTHEADS`) é o cabeçalho de 3 colunas; a base é `.theme-masthead` e cada tema estiliza por `[data-theme="x"] .theme-masthead`. No `lofi`, `action: 'rain'` troca o texto da direita por um botão que chama `playAmbient('rain')` / `stopAmbient()`.
-- `LofiRain` (fios e gotas de chuva, só `transform`/`opacity`) é o único cenário com elementos próprios; no modo leve fica oculto (auditado: 0 animações infinitas por tema).
+- **Remover um tema**: cada CSS vive num bloco `/* @@nome START */ … /* @@nome END */` em `index.css`. Apague o bloco, a entrada em `themes.js` (+ `themeLayouts`), o componente do card, os registros acima e, se houver, o cenário em `App.jsx` e a linha em `ThemeMasthead`. `resolveTheme`/`resolveCardLayout` já tratam um id salvo que não existe mais.
+- `ThemeMasthead` (`MASTHEADS`) é o cabeçalho de 3 colunas; a base é `.theme-masthead` e cada tema estiliza por `[data-theme="x"] .theme-masthead`.
 - **Armadilhas**:
   - `card-contain` (`contain: style`) **isola CSS counters** por card: um layout que numere por `counter-increment` não pode usá-lo.
   - Data-URI em CSS: todo `#` vai como `%23` (vale para `feTurbulence`/`url(%23id)` também).
   - Abas ativas têm `text-[#1a1a1a]` fixo no componente: onde esse texto escuro perde contraste sobre o `--accent` (`sumie`) o tema sobrescreve a cor com `!important`.
-  - Temas claros (`pop`, `sumie`) precisam reconferir contraste de qualquer componente novo com cor fixa.
-- Fontes novas em `index.html`: Shippori Mincho (`sumie`) e Space Grotesk (`pop`).
+  - Temas claros (`minimal-light`, `sumie`, `herbario`) precisam reconferir contraste de qualquer componente novo com cor fixa.
+- A fonte Shippori Mincho (`sumie`) é carregada em `index.html`.
 
 ### Workspaces (Espaços)
 
@@ -166,7 +165,7 @@ Cada um destes três temas nasceu com um layout de card. Tema e layout continuam
 - `WorkspaceSwitcher` / `WorkspaceManager` — troca e CRUD de espaços.
 - `CategoryFilter` — abas de filtro + Frequentes + botão "Adicionar Site".
 - `SiteGrid` — grid sortable com `DndContext > SortableContext`, usa `rectSortingStrategy`.
-- `SiteCard` — facade dos 11 layouts (`classic`, `space`, `wave-particle`, `quantum-spin`, `cyber`, `archive`, `android`, `berserk`, `adesivo`, `tanzaku`, `vinil`). É um mapa `LAYOUT_COMPONENTS` por id; id desconhecido cai no Clássico.
+- `SiteCard` — facade dos 10 layouts (`classic`, `wave-particle`, `quantum-spin`, `cyber`, `archive`, `android`, `berserk`, `tanzaku`, `exsicata`, `dunas`). É um mapa `LAYOUT_COMPONENTS` por id; id desconhecido cai no Clássico.
 - `resolveCardLayout()` em `utils/cardLayout.js` corrige id órfão no boot e no import (cai para `classic`).
 - `WidgetDock` / `NotesPanel` / `PomodoroPanel` / `AgendaPanel` / `TimersPanel` / `AmbientPanel` / `SummaryPanel` — dock inferior.
 - `CommandPalette` — Ctrl+K (lazy). `BackupReminder` / `AutoBackupSettings` — backup.

@@ -91,12 +91,11 @@ Exibição em tempo real, sempre visível. Simples e elegante.
 | 🗃️ Arquivo Noûs | Visual de arquivo analógico |
 | 🔵 Detroit | Interface androide futurista |
 
-### 📐 7 Layouts de Cards
+### 📐 Layouts de Cards
 
 | Layout | Descrição |
 |--------|-----------|
 | 🔲 Clássico | Ícones em grade tradicional |
-| 🌌 Space | Janela para o cosmos |
 | 🌊 Dualidade | Onda-partícula quântica |
 | ⚛️ Spin | Spin quântico animado |
 | 🖥️ Cyber | Slot netrunner |
